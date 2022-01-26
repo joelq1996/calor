@@ -1,0 +1,15 @@
+clc 
+clear all;
+
+c1=0;
+c2=0;
+f=@(x) 4*x-4*x.^2;
+a=1;
+b=0.2;
+c=1;
+n=6;
+m=11;
+
+U = ecuacioncalor(f, c1, c2, a, b, c, n, m)
+U=U';
+surf(U)
