@@ -1,0 +1,23 @@
+function U=ecuacioncalor(f, c1, c2, a, b, c, n, m)
+%{
+Autores: Joel Quintuna, Edwin Munoz
+f: función
+c1,c2: condiciones de contorno 
+a: variación en a
+b; variación en b
+c: variación en el tiempo 
+n,m: particiones
+%}
+h=a/(n-1);
+k=b/(m-1);
+r=c^2*(k/h^2);
+s=1-2*r; 
+U=zeros(n,m);
+U(1,1:m)=0;
+U(n,1:m)=0;
+U(2:n-1,1)=f(h:h:(n-2)*h)';
+for j=2:m
+  for i=2:n-1
+     U(i,j)=s*U(i,j-1)+r*(U(i-1,j-1)+U(i+1,j-1));
+  end
+end
